@@ -42,10 +42,11 @@ int main(int argc, char *argv[]) {
     write_log("Server started", LOG_INFO, LOG_FILE);
     // Ensure the directory exists
 
-    //if the data.txt exists delete before start receiving 
-    clear_file();
 
+
+    char filelist[4096] = {0};
     verify_dir(FILE_PATH);
+    list_files(FILE_PATH, filelist);
 
     // Create socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
@@ -123,16 +124,6 @@ void exit_error(char* buff)
     exit(EXIT_FAILURE);
 }
 
-void clear_file()
-{
-    //delete the file if it exists
-    char data_recv_path[sizeof(FILE_PATH) + sizeof(FILE_NAME)];
-    sprintf(data_recv_path, "%s%s", FILE_PATH, FILE_NAME);
-
-    if (access(data_recv_path, F_OK) == 0) {
-        remove(data_recv_path);
-    }
-}
 
 int write_file(char* data)
 {
@@ -162,7 +153,7 @@ int write_file(char* data)
     return 0;
 }
 
-void list_files(const char *path) {
+void list_files(const char *path, char* file_list) {
     struct dirent *entry;
     DIR *dp = opendir(path);
 

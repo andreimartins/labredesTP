@@ -14,6 +14,7 @@
 
 
 #define BUFFER_SIZE 1460
+#define FILE_NAME_BUFFER 1024
 
 //log line buffer
 char log_line[LOG_BUFFER_SIZE] = {0};
@@ -29,8 +30,8 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in server_addr;
 
     //verify if all parameters are passed
-    if (argc != 4) {
-        sprintf(log_line, "Usage: %s <server_ip> <server_port> <file_selection 1-small 2-large>\n", argv[0]);
+    if (argc != 3) {
+        sprintf(log_line, "Usage: %s <server_ip> <server_port>\n", argv[0]);
         write_log(log_line, LOG_ERROR, LOG_FILE);
         exit_error("Invalid arguments");
     }
@@ -40,7 +41,7 @@ int main(int argc, char *argv[]) {
     char server_ip[16] = {0};
     char server_port[6] = {0};
     int cmd_selection = 0;
-
+    char file[FILE_NAME_BUFFER] = {0};
     // load the parameters
     sprintf(server_ip, "%s", argv[1]);
     sprintf(server_port, "%s", argv[2]);
@@ -95,7 +96,7 @@ int main(int argc, char *argv[]) {
         }
         else {
             printf("Comando inválido.\n");
-            return 1;
+           
         }
         memset(cmd, 0, sizeof(cmd));// clear cmd buffer
 
@@ -110,21 +111,22 @@ int main(int argc, char *argv[]) {
                     {
                         write_log("List command failed", LOG_ERROR, LOG_FILE);
                     }
-
+                    cmd_selection = 0; // reset selection
                 break;
             case 2:     
+                  
                     printf("informe o caminho e o arquivo a ser enviado: ");
                     printf("ex.: livro.txt \n");
                     printf("ex.: /home/user/Documentos/livro.txt \n");
 
-                    scanf("%49s", cmd);
+                    scanf("%1024s", file);
 
 
-                    sprintf(log_line, "Sending file %s", cmd);
+                    sprintf(log_line, "Sending file %s", file);
                     write_log(log_line, LOG_INFO, LOG_FILE);
 
 
-                    if(cmd_put (cmd, sock)) 
+                    if(cmd_put(file, sock)) 
                     {
                         write_log("Put command executed", LOG_INFO, LOG_FILE);
                     } 
@@ -132,11 +134,14 @@ int main(int argc, char *argv[]) {
                     {
                         write_log("Put command failed", LOG_ERROR, LOG_FILE);
                     }
+                    cmd_selection = 0; // reset selection
+                    memset(file, 0, sizeof(file));// clear file buffer
 
                 break;
             case 3:     
                     sprintf(log_line, "Quitting...");
                     write_log(log_line, LOG_INFO, LOG_FILE);
+
                 break;
             default:
                 exit_error("Invalid file selection");
@@ -189,6 +194,7 @@ bool cmd_put(char* file_to_send, int sock) {
     int packets_sent = 0;
     int total_bytes = 0;
     while ((bytes_read = fread(buffer, sizeof(char), BUFFER_SIZE, file)) > 0) {
+
         if (send(sock, buffer, bytes_read, 0) == -1) {
             perror("Failed to send file");
             write_log("Failed to send file", LOG_ERROR, LOG_FILE);

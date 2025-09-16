@@ -45,7 +45,7 @@ void write_log(char* log_line, enum log_tag_t log_tag, char* log_name)
     fprintf(file, line);
     fflush(file); // Ensure the log entry is written immediately
 
-    memset(log_line, 0, sizeof(log_line)); // Clear the log line buffer 
+
     fclose(file);
     
 }

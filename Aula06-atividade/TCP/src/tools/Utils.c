@@ -1,6 +1,5 @@
 #include "Utils.h"
 #include <dirent.h>
-#include <stdbool.h>
 
 void verify_dir(const char *path)
 {

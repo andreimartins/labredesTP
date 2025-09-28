@@ -145,6 +145,8 @@ Exemplo:
 ./server 15000
 ```
 
+> Ao inciar o servidor exibe o ip que está sendo executado.
+
 ### Executando o Cliente
 
 1. Execute o cliente informando o IP do servidor, a porta e o comando desejado:
@@ -160,6 +162,11 @@ Exemplo:
 	- `put <arquivo>`: Envia arquivo ao servidor
 	- `list`: Lista arquivos disponíveis no servidor
 	- `quit`: Encerra a conexão
+
+> Para o comando `put` pode-se incluir tanto somente o nome de um arquivo que deverá estar na mesma pasta do client ou informando o caminho completo junto ao nome.
+> ex: `put arquivo.png`
+> ex2: `/home/user/downloads/enunciado.pdf`
+> No segundo caso o client informará para o servidor somente o nome do arquivo sem o caminho informado
 
 ### Observações
 - Os logs de execução são gerados na pasta `logs/`.

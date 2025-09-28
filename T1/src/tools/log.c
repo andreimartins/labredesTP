@@ -2,6 +2,7 @@
 
 
 
+
 const char* log_tag_str[] = {
     "INFO",
     "WARN",
@@ -17,7 +18,8 @@ void write_log(char* log_line, enum log_tag_t log_tag, char* log_name)
     char date_buffer[16] = {0};
     char time_buffer[16] = {0};
 
-    // Get the current time
+
+    // Obtém o horário atual
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     sprintf(date_buffer, "%04d-%02d-%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
@@ -29,26 +31,22 @@ void write_log(char* log_line, enum log_tag_t log_tag, char* log_name)
 
     if (access(log_file, F_OK) == 0) {
         file = fopen(log_file, "a");
-     
     } else {
         file = fopen(log_file, "w");
-        printf("Log file created: %s\n", log_file);
-       
+        printf("Arquivo de log criado: %s\n", log_file);
     }
 
-    // Write the log entry
+    // Escreve a entrada de log
     char line[LOG_BUFFER_SIZE+32] = {0};
     snprintf(line, sizeof(line), "[%s]\t[%s]\t %s\n", time_buffer, log_tag_str[log_tag], log_line);
 
-    //print on terminal
+    // Exibe no terminal
     printf("%s", line);
 
-    //write on file
+    // Escreve no arquivo
     fprintf(file, line);
-    fflush(file); // Ensure the log entry is written immediately
-
+    fflush(file); // Garante que a entrada seja gravada imediatamente
 
     fclose(file);
-    
 }
 

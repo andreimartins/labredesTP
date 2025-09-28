@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
-#include "./tools/log.h"
+#include "./tools/log.h" //lib de logs
 
 
 // Definições dos tipos de operação do protocolo
@@ -155,6 +155,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+// função que será executada na thread que lidará com o client
 void *handle_client(void *socket_desc)
 {
     int sock = *(int *)socket_desc;
@@ -162,7 +163,7 @@ void *handle_client(void *socket_desc)
     Header header;
     char buffer[1024];
 
-    while (read(sock, &header, sizeof(Header)) > 0)
+    while (read(sock, &header, sizeof(Header)) > 0) //laço para recebimento de comandos
     {
         header.payload_size = ntohl(header.payload_size);
 
@@ -201,36 +202,39 @@ void *handle_client(void *socket_desc)
     return 0;
 }
 
+//execução do comando de list 
 void send_file_list(int sock)
 {
     DIR *d;
     struct dirent *dir;
     char file_list[4096] = "";
 
-    d = opendir(STORAGE_DIR);
+    d = opendir(STORAGE_DIR); // abre o diretório storage
     if (d)
     {
-        while ((dir = readdir(d)) != NULL)
+        while ((dir = readdir(d)) != NULL) // lê lista de arquivos 
         {
             // Apenas arquivos regulares
-            //fignorar . e ..
-            if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) {
+            
+            if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) { //ingora . e ..
                 continue;
             }
-            strcat(file_list, dir->d_name);
+            strcat(file_list, dir->d_name); //montagem da lista de nomes de arquivos
             strcat(file_list, "\n");
         }
-        closedir(d);
+        closedir(d); // fecha o diretório
     }
 
     Header response_header;
     response_header.type = OP_LIST;
     response_header.payload_size = htonl(strlen(file_list));
 
-    write(sock, &response_header, sizeof(Header));
-    write(sock, file_list, strlen(file_list));
+    write(sock, &response_header, sizeof(Header)); // envia header informando que ira enviar a lista 
+    write(sock, file_list, strlen(file_list)); // envia a lista TODO: corrigir para respeitar o MTU
 }
 
+
+//recebimento de arquivo enviado pelo client
 void receive_file(int sock, char *filename)
 {
     char filepath[512];
@@ -238,7 +242,7 @@ void receive_file(int sock, char *filename)
     write_log("Recebendo arquivo...", LOG_INFO, LOG_FILE);
     write_log(filepath, LOG_INFO, LOG_FILE);
 
-    // Tratamento de erro para arquivos com o mesmo nome
+    // verifica se o arquivo já existe, caso já exista retorna erro para informar duplicidade
     if (access(filepath, F_OK) == 0)
     {
         write_log("Arquivo já existe no servidor.", LOG_ERROR, LOG_FILE);
@@ -256,6 +260,7 @@ void receive_file(int sock, char *filename)
     sprintf(log_line, "nome do arquivo: %s", filename);
     write_log(log_line, LOG_INFO, LOG_FILE);
 
+    //cria arquivo a ser recebido
     FILE *fp = fopen(filepath, "wb");
     if (fp == NULL)
     {
@@ -268,22 +273,23 @@ void receive_file(int sock, char *filename)
     Header ok_header;
     ok_header.type = OP_OK;
     ok_header.payload_size = 0;
-    write(sock, &ok_header, sizeof(Header)); // envia apenas ok sem mensagem
+    write(sock, &ok_header, sizeof(Header)); // envia apenas ok sem mensagem descritiva - controle interno
 
+    //  fluco de recebimento
     Header data_header;
     char data_buffer[BUFFER_SIZE];
     ssize_t bytes_read;
     int total_blocks = 0;
     // Loop para receber dados do arquivo
-    while ((bytes_read = read(sock, &data_header, sizeof(Header))) > 0) // lê header
+    while ((bytes_read = read(sock, &data_header, sizeof(Header))) > 0) // recebe o header da msg
     {
-        if (data_header.type != OP_DATA)
+        if (data_header.type != OP_DATA) //qualquer mensagem diferente de OP_DATA encerra o recebimento
         {
             break; // Fim da transmissão do arquivo
         }
-        data_header.payload_size = ntohl(data_header.payload_size);
-        read(sock, data_buffer, data_header.payload_size);
-        fwrite(data_buffer, 1, data_header.payload_size, fp);
+        data_header.payload_size = ntohl(data_header.payload_size); 
+        read(sock, data_buffer, data_header.payload_size);      // recebe o dado
+        fwrite(data_buffer, 1, data_header.payload_size, fp);   // escreve no arquivo parte do dado recebido
     }
 
     sprintf(log_line, "Arquivo '%s' recebido com sucesso.", filename);

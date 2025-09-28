@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <time.h>
-#include "./tools/log.h"
+#include "./tools/log.h" // lib de logs
 
 
 // Definições dos tipos de operação do protocolo
@@ -153,7 +153,7 @@ bool cmd_list(int sock_fd)
     write(sock_fd, &header, sizeof(Header));
 
     // Recebe resposta
-    if (read(sock_fd, &header, sizeof(Header)) > 0)
+    if (read(sock_fd, &header, sizeof(Header)) > 0) //TODO: corrigir para respeitar o MTU
     {
         header.payload_size = ntohl(header.payload_size);
         char *file_list = malloc(header.payload_size + 1);

@@ -7,7 +7,7 @@ void verify_dir(const char *path)
     
     if (stat(path, &st) == -1) {
         if (mkdir(path, 0764) == -1) {
-            perror("Failed to create directory");
+            perror("Falha ao criar diretório");
             exit(EXIT_FAILURE);
         }
     }
@@ -24,18 +24,17 @@ void collect_tcp_info(int sockfd, char *buffer, size_t buffer_size)
     socklen_t info_len = sizeof(info);
     if (getsockopt(sockfd, IPPROTO_TCP, TCP_INFO, &info, &info_len) == -1) 
     {
-        perror("getsockopt TCP_INFO failed");
-        snprintf(buffer, buffer_size, "TCP_INFO error\n");
+        perror("getsockopt TCP_INFO falhou");
+        snprintf(buffer, buffer_size, "Erro TCP_INFO\n");
         return;
     }
 
-
     snprintf(buffer, buffer_size,
         "RTT: %u us, cwnd: %u, ssthresh: %u, retrans: %u\n",
-        info.tcpi_rtt, //round-trip time in microseconds
-        info.tcpi_snd_cwnd, //send congestion window
-        info.tcpi_snd_ssthresh, //slow start threshold
-        info.tcpi_total_retrans); //total retransmissions
+        info.tcpi_rtt, // tempo de ida e volta em microssegundos
+        info.tcpi_snd_cwnd, // janela de congestionamento de envio
+        info.tcpi_snd_ssthresh, // limiar de slow start
+        info.tcpi_total_retrans); // total de retransmissões
 
 }
 

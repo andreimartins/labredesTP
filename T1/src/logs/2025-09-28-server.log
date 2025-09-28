@@ -148,3 +148,38 @@
 [01-44:57]	[INFO]	 File created!
 [01-45:01]	[INFO]	 File 'LM-Studio-0.3.23-3-x64.AppImage' received successfully.
 [01-49:37]	[INFO]	 Client requested session termination.
+[02-29:16]	[INFO]	 IP do servidor: 192.168.2.125
+[02-29:16]	[INFO]	 Servidor iniciado na porta 8891
+[02-29:16]	[INFO]	 Aguardando conexões...
+[02-29:18]	[INFO]	 Conexão aceita de 192.168.2.125:52050
+[02-29:20]	[INFO]	 Cliente solicitou lista de arquivos.
+[02-29:32]	[INFO]	 Cliente quer enviar arquivo: server.c
+[02-29:32]	[INFO]	 Recebendo arquivo...
+[02-29:32]	[INFO]	 storage/server.c
+[02-29:32]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-29:32]	[INFO]	 nome do arquivo: server.c
+[02-29:32]	[INFO]	 Arquivo criado!
+[02-29:32]	[INFO]	 Arquivo 'server.c' recebido com sucesso.
+[02-29:41]	[INFO]	 Cliente quer enviar arquivo: client.c
+[02-29:41]	[INFO]	 Recebendo arquivo...
+[02-29:41]	[INFO]	 storage/client.c
+[02-29:41]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-29:41]	[INFO]	 nome do arquivo: client.c
+[02-29:41]	[INFO]	 Arquivo criado!
+[02-29:41]	[INFO]	 Arquivo 'client.c' recebido com sucesso.
+[02-29:45]	[INFO]	 Cliente quer enviar arquivo: client
+[02-29:45]	[INFO]	 Recebendo arquivo...
+[02-29:45]	[INFO]	 storage/client
+[02-29:45]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-29:45]	[INFO]	 nome do arquivo: client
+[02-29:45]	[INFO]	 Arquivo criado!
+[02-29:45]	[INFO]	 Arquivo 'client' recebido com sucesso.
+[02-29:48]	[INFO]	 Cliente quer enviar arquivo: server
+[02-29:48]	[INFO]	 Recebendo arquivo...
+[02-29:48]	[INFO]	 storage/server
+[02-29:48]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-29:48]	[INFO]	 nome do arquivo: server
+[02-29:48]	[INFO]	 Arquivo criado!
+[02-29:48]	[INFO]	 Arquivo 'server' recebido com sucesso.
+[02-29:51]	[INFO]	 Cliente solicitou lista de arquivos.
+[02-29:57]	[INFO]	 Cliente solicitou encerramento da sessão.

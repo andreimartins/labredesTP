@@ -1,4 +1,4 @@
-# Makefile for TCP socket project
+# Makefile for T1 TCP socket project
 
 CC = gcc
 CFLAGS = -Wall -Wextra -g -Itools
@@ -18,15 +18,18 @@ CLIENT_BIN = client
 SERVER_BIN = server
 
 
-all: $(CLIENT_BIN) $(SERVER_BIN)
+#all: $(CLIENT_BIN) $(SERVER_BIN)
+all: $(BIN_DIR)/$(CLIENT_BIN) $(BIN_DIR)/$(SERVER_BIN)
 
-$(CLIENT_BIN): $(CLIENT_OBJ)
+$(BIN_DIR)/$(CLIENT_BIN): $(CLIENT_OBJ)
 	mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
+	cp $(BIN_DIR)/$(CLIENT_BIN) $(CLIENT_BIN)
 
-$(SERVER_BIN): $(SERVER_OBJ)
+$(BIN_DIR)/$(SERVER_BIN): $(SERVER_OBJ)
 	mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
+	cp $(BIN_DIR)/$(SERVER_BIN) $(SERVER_BIN)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)

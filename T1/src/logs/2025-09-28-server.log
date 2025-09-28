@@ -116,3 +116,35 @@
 [01-07:20]	[INFO]	 Receiving file...
 [01-07:20]	[INFO]	 storage/client.c
 [01-07:20]	[ERROR]	 File already exists on server.
+[01-36:41]	[INFO]	 Server IP: 192.168.2.125
+[01-36:41]	[INFO]	 Server started on port 8891
+[01-36:41]	[INFO]	 Waiting for connections...
+[01-38:01]	[INFO]	 Connection accepted from 192.168.2.125:37794
+[01-38:03]	[INFO]	 Client requested file list.
+[01-38:17]	[INFO]	 Client wants to send file: server.c
+[01-38:17]	[INFO]	 Receiving file...
+[01-38:17]	[INFO]	 storage/server.c
+[01-38:17]	[ERROR]	 File already exists on server.
+[01-38:37]	[INFO]	 Client wants to send file: server.c
+[01-38:37]	[INFO]	 Receiving file...
+[01-38:37]	[INFO]	 storage/server.c
+[01-38:37]	[INFO]	 File does not exist, ready to receive.
+[01-38:37]	[INFO]	 file name: server.c
+[01-38:37]	[INFO]	 File created!
+[01-38:37]	[INFO]	 File 'server.c' received successfully.
+[01-42:02]	[INFO]	 Client requested file list.
+[01-43:25]	[INFO]	 Client wants to send file: Princess_mononoke_mask-2203460.zip
+[01-43:25]	[INFO]	 Receiving file...
+[01-43:25]	[INFO]	 storage/Princess_mononoke_mask-2203460.zip
+[01-43:25]	[INFO]	 File does not exist, ready to receive.
+[01-43:25]	[INFO]	 file name: Princess_mononoke_mask-2203460.zip
+[01-43:25]	[INFO]	 File created!
+[01-43:25]	[INFO]	 File 'Princess_mononoke_mask-2203460.zip' received successfully.
+[01-44:57]	[INFO]	 Client wants to send file: LM-Studio-0.3.23-3-x64.AppImage
+[01-44:57]	[INFO]	 Receiving file...
+[01-44:57]	[INFO]	 storage/LM-Studio-0.3.23-3-x64.AppImage
+[01-44:57]	[INFO]	 File does not exist, ready to receive.
+[01-44:57]	[INFO]	 file name: LM-Studio-0.3.23-3-x64.AppImage
+[01-44:57]	[INFO]	 File created!
+[01-45:01]	[INFO]	 File 'LM-Studio-0.3.23-3-x64.AppImage' received successfully.
+[01-49:37]	[INFO]	 Client requested session termination.

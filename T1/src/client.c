@@ -236,6 +236,8 @@ bool cmd_put(int sock, const char *filename_full)
 
     write_log("Opening file", LOG_INFO, LOG_FILE);
 
+    time_t start_time = time(NULL);
+
     while ((bytes_read = fread(buffer, 1, sizeof(buffer), fp)) > 0) // read until EOF - chunks 
     {
 
@@ -246,6 +248,12 @@ bool cmd_put(int sock, const char *filename_full)
         total_bytes += bytes_read;
         packets_sent++;
     }
+
+    time_t end_time = time(NULL);
+    double duration = difftime(end_time, start_time);
+    sprintf(log_line, "File transfer duration: %.2f seconds", duration);
+    write_log(log_line, LOG_INFO, LOG_FILE);
+    
 
     sprintf(log_line, "Total packets sent: %d", packets_sent);
     write_log(log_line, LOG_INFO, LOG_FILE);
@@ -266,6 +274,12 @@ bool cmd_put(int sock, const char *filename_full)
     collect_tcp_info(sock, log_line, LOG_BUFFER_SIZE);
     write_log(log_line, LOG_INFO, LOG_FILE);
 
+    //aproximated rate
+    if (duration > 0) {
+        double rate = total_bytes / duration; // bytes per second
+        sprintf(log_line, "Approximate transfer rate: %.2f bytes/second", rate);
+        write_log(log_line, LOG_INFO, LOG_FILE);
+    }
     // Send end of transmission header
     data_header.type = OP_QUIT; // Reusing QUIT to signal end on transmission
     data_header.payload_size = 0;

@@ -28,12 +28,15 @@ void collect_tcp_info(int sockfd, char *buffer, size_t buffer_size)
         snprintf(buffer, buffer_size, "TCP_INFO error\n");
         return;
     }
+
+
     snprintf(buffer, buffer_size,
         "RTT: %u us, cwnd: %u, ssthresh: %u, retrans: %u\n",
-        info.tcpi_rtt,
-        info.tcpi_snd_cwnd,
-        info.tcpi_snd_ssthresh,
-        info.tcpi_total_retrans);
+        info.tcpi_rtt, //round-trip time in microseconds
+        info.tcpi_snd_cwnd, //send congestion window
+        info.tcpi_snd_ssthresh, //slow start threshold
+        info.tcpi_total_retrans); //total retransmissions
+
 }
 
 

@@ -1,5 +1,7 @@
 #include "log.h"
 
+
+
 const char* log_tag_str[] = {
     "INFO",
     "WARN",
@@ -49,3 +51,4 @@ void write_log(char* log_line, enum log_tag_t log_tag, char* log_name)
     fclose(file);
     
 }
+

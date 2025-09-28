@@ -1,0 +1,26 @@
+[00-43:06]	[INFO]	 Client PID: 60528
+[00-43:06]	[INFO]	 Available commands: list, put <filename>, quit
+
+[00-43:06]	[INFO]	 Enter a command: 
+[00-43:10]	[INFO]	 Available commands: list, put <filename>, quit
+
+[00-43:10]	[INFO]	 Enter a command: 
+[00-43:29]	[INFO]	 Starting PUT command
+[00-43:29]	[INFO]	 Opened file successfully
+[00-43:29]	[INFO]	 Sending file: client.c
+[00-43:29]	[INFO]	 OK to send
+[00-43:29]	[INFO]	 Opening file
+[00-43:29]	[INFO]	 Total packets sent: 6
+[00-43:29]	[INFO]	 Total bytes sent: 7812
+[00-43:29]	[INFO]	 File transfer complete
+[00-43:29]	[INFO]	 Statistics: 
+[00-43:29]	[INFO]	 RTT -> round-trip time in microseconds
+[00-43:29]	[INFO]	 cwnd-> send congestion window
+[00-43:29]	[INFO]	 ssthresh -> slow start threshold
+[00-43:29]	[INFO]	 retrans -> total retransmissions
+[00-43:29]	[INFO]	 RTT: 4602 us, cwnd: 10, ssthresh: 2147483647, retrans: 0
+
+[00-43:29]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[00-43:29]	[INFO]	 Available commands: list, put <filename>, quit
+
+[00-43:29]	[INFO]	 Enter a command: 

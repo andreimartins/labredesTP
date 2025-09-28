@@ -1,0 +1,414 @@
+[23-04:12]	[ERROR]	 Uso: <programa> <host> <porta>
+[23-04:24]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-04:24]	[INFO]	 Digite um comando: 
+[23-04:27]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-04:27]	[INFO]	 Digite um comando: 
+[23-04:47]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-04:47]	[INFO]	 Digite um comando: 
+[23-10:38]	[WARN]	 Comando desconhecido
+[23-10:38]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-10:38]	[INFO]	 Digite um comando: 
+[20-18:25]	[ERROR]	 Uso: <programa> <host> <porta>
+[20-21:57]	[ERROR]	 Uso: <programa> <host> <porta>
+[21-25:20]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-25:20]	[INFO]	 Digite um comando: 
+[21-27:27]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-27:27]	[INFO]	 Digite um comando: 
+[21-28:12]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-28:12]	[INFO]	 Digite um comando: 
+[21-29:52]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-29:52]	[INFO]	 Digite um comando: 
+[21-32:30]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-32:30]	[INFO]	 Digite um comando: 
+[21-32:38]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-32:38]	[INFO]	 Digite um comando: 
+[21-33:22]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[21-33:22]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-33:22]	[INFO]	 Digite um comando: 
+[21-33:26]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-33:26]	[INFO]	 Digite um comando: 
+[21-37:22]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-37:22]	[INFO]	 Digite um comando: 
+[21-41:19]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-41:19]	[INFO]	 Digite um comando: 
+[21-41:20]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-41:20]	[INFO]	 Digite um comando: 
+[21-42:56]	[INFO]	 Connection closed
+[21-43:00]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-43:00]	[INFO]	 Digite um comando: 
+[21-43:09]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-43:09]	[INFO]	 Digite um comando: 
+[21-56:03]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-56:03]	[INFO]	 Digite um comando: 
+[21-56:06]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[21-56:06]	[INFO]	 Digite um comando: 
+[22-30:40]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-30:40]	[INFO]	 Digite um comando: 
+[22-30:41]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-30:41]	[INFO]	 Digite um comando: 
+[22-30:47]	[INFO]	 Starting PUT command
+[22-30:47]	[INFO]	 Opened file successfully
+[22-30:47]	[INFO]	 Sending file: server.c
+[22-36:39]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-36:39]	[INFO]	 Digite um comando: 
+[22-36:41]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-36:41]	[INFO]	 Digite um comando: 
+[22-36:54]	[INFO]	 Starting PUT command
+[22-36:54]	[INFO]	 Opened file successfully
+[22-36:54]	[INFO]	 Sending file: server.c
+[22-36:54]	[INFO]	 Server ready to receive file
+[22-41:36]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-41:36]	[INFO]	 Digite um comando: 
+[22-41:45]	[INFO]	 Starting PUT command
+[22-41:45]	[INFO]	 Opened file successfully
+[22-41:45]	[INFO]	 Sending file: server.c
+[22-41:46]	[INFO]	 Server ready to receive file
+[22-43:23]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-43:23]	[INFO]	 Digite um comando: 
+[22-43:27]	[INFO]	 Starting PUT command
+[22-43:27]	[INFO]	 Opened file successfully
+[22-43:27]	[INFO]	 Sending file: server.c
+[22-43:27]	[INFO]	 Server ready to receive file
+[22-45:06]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-45:06]	[INFO]	 Digite um comando: 
+[22-45:09]	[INFO]	 Starting PUT command
+[22-45:09]	[INFO]	 Opened file successfully
+[22-45:09]	[INFO]	 Sending file: server.c
+[22-49:50]	[INFO]	 Server ready to receive file
+[22-50:19]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-50:19]	[INFO]	 Digite um comando: 
+[22-50:23]	[INFO]	 Starting PUT command
+[22-50:23]	[INFO]	 Opened file successfully
+[22-50:23]	[INFO]	 Sending file: server.c
+[22-50:23]	[INFO]	 block readed
+[22-50:23]	[ERROR]	 Server error: Arquivo com este nome ja existe.
+[22-50:23]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[22-50:23]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-50:23]	[INFO]	 Digite um comando: 
+[22-50:47]	[INFO]	 Starting PUT command
+[22-50:47]	[INFO]	 Opened file successfully
+[22-50:47]	[INFO]	 Sending file: server.c
+[22-55:48]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-55:48]	[INFO]	 Digite um comando: 
+[22-56:11]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[22-56:11]	[INFO]	 Digite um comando: 
+[22-56:16]	[INFO]	 Starting PUT command
+[22-56:16]	[INFO]	 Opened file successfully
+[22-56:16]	[INFO]	 Sending file: server.c
+[23-04:03]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-04:03]	[INFO]	 Digite um comando: 
+[23-04:06]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-04:06]	[INFO]	 Digite um comando: 
+[23-04:27]	[INFO]	 Starting PUT command
+[23-04:27]	[INFO]	 Opened file successfully
+[23-04:27]	[INFO]	 Sending file: server.c
+[23-07:16]	[INFO]	 Server ready to receive file
+[23-07:16]	[INFO]	 Openning file
+[23-07:16]	[INFO]	 block readed
+[23-07:23]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-07:23]	[INFO]	 Digite um comando: 
+[23-07:26]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-07:26]	[INFO]	 Digite um comando: 
+[23-07:41]	[INFO]	 Starting PUT command
+[23-07:41]	[INFO]	 Opened file successfully
+[23-07:41]	[INFO]	 Sending file: server.c
+[23-07:41]	[INFO]	 OK to send
+[23-07:41]	[INFO]	 Server ready to receive file
+[23-07:41]	[INFO]	 Openning file
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 block readed
+[23-07:41]	[INFO]	 Total packets sent: 6
+[23-07:41]	[INFO]	 Total bytes sent: 7955
+[23-07:41]	[INFO]	 Statistics: 
+[23-07:41]	[INFO]	 RTT: 4450 us, cwnd: 10, ssthresh: 2147483647, retrans: 0
+
+[23-07:41]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[23-07:41]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-07:41]	[INFO]	 Digite um comando: 
+[23-08:17]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-08:17]	[INFO]	 Digite um comando: 
+[23-08:30]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-08:30]	[INFO]	 Digite um comando: 
+[23-08:34]	[INFO]	 Starting PUT command
+[23-08:34]	[INFO]	 Opened file successfully
+[23-08:34]	[INFO]	 Sending file: 2025-09-27-server.log
+[23-08:34]	[INFO]	 OK to send
+[23-08:34]	[INFO]	 Server ready to receive file
+[23-08:34]	[INFO]	 Openning file
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 block readed
+[23-08:34]	[INFO]	 Total packets sent: 6
+[23-08:34]	[INFO]	 Total bytes sent: 7831
+[23-08:34]	[INFO]	 Statistics: 
+[23-08:34]	[INFO]	 RTT: 9147 us, cwnd: 10, ssthresh: 2147483647, retrans: 0
+
+[23-08:34]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[23-08:34]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-08:34]	[INFO]	 Digite um comando: 
+[23-09:40]	[INFO]	 Starting PUT command
+[23-09:40]	[INFO]	 Opened file successfully
+[23-09:40]	[INFO]	 Sending file: tcp1.png
+[23-09:40]	[INFO]	 OK to send
+[23-09:40]	[INFO]	 Server ready to receive file
+[23-09:40]	[INFO]	 Openning file
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 block readed
+[23-09:40]	[INFO]	 Total packets sent: 168
+[23-09:40]	[INFO]	 Total bytes sent: 244195
+[23-09:40]	[INFO]	 Statistics: 
+[23-09:40]	[INFO]	 RTT: 5551 us, cwnd: 10, ssthresh: 2147483647, retrans: 0
+
+[23-09:40]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[23-09:40]	[INFO]	 Comandos disponíveis: list, put <filename>, quit
+
+[23-09:40]	[INFO]	 Digite um comando: 
+[23-13:37]	[INFO]	 Available commands: list, put <filename>, quit
+
+[23-13:37]	[INFO]	 Enter a command: 
+[23-13:39]	[INFO]	 Available commands: list, put <filename>, quit
+
+[23-13:39]	[INFO]	 Enter a command: 
+[23-13:50]	[INFO]	 Starting PUT command
+[23-13:50]	[INFO]	 Opened file successfully
+[23-13:50]	[INFO]	 Sending file: server.c
+[23-13:50]	[ERROR]	 Server error: A file with this name already exists.
+[23-13:50]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[23-13:50]	[INFO]	 Available commands: list, put <filename>, quit
+
+[23-13:50]	[INFO]	 Enter a command: 
+[23-14:06]	[INFO]	 Starting PUT command
+[23-14:06]	[INFO]	 Opened file successfully
+[23-14:06]	[INFO]	 Sending file: client.c
+[23-14:06]	[INFO]	 OK to send
+[23-14:06]	[INFO]	 Server ready to receive file
+[23-14:06]	[INFO]	 Opening file
+[23-14:06]	[INFO]	 Block read
+[23-14:06]	[INFO]	 Block read
+[23-14:06]	[INFO]	 Block read
+[23-14:06]	[INFO]	 Block read
+[23-14:06]	[INFO]	 Block read
+[23-14:06]	[INFO]	 Total packets sent: 5
+[23-14:06]	[INFO]	 Total bytes sent: 7018
+[23-14:06]	[INFO]	 Statistics: 
+[23-14:06]	[INFO]	 RTT: 7864 us, cwnd: 10, ssthresh: 2147483647, retrans: 0
+
+[23-14:06]	[INFO]	 Connection for PUT lasted approximately 0.00 seconds.
+[23-14:06]	[INFO]	 Available commands: list, put <filename>, quit
+
+[23-14:06]	[INFO]	 Enter a command: 
+[23-14:32]	[INFO]	 Available commands: list, put <filename>, quit
+
+[23-14:32]	[INFO]	 Enter a command: 
+[23-14:34]	[INFO]	 Connection closed

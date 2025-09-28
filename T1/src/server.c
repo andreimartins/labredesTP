@@ -229,8 +229,9 @@ void send_file_list(int sock)
     response_header.type = OP_LIST;
     response_header.payload_size = htonl(strlen(file_list));
 
+    //TODO: corrigir para respeitar o MTU
     write(sock, &response_header, sizeof(Header)); // envia header informando que ira enviar a lista 
-    write(sock, file_list, strlen(file_list)); // envia a lista TODO: corrigir para respeitar o MTU
+    write(sock, file_list, strlen(file_list)); // envia a lista 
 }
 
 

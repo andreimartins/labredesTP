@@ -91,15 +91,15 @@ Os seguintes cenários devem ser executados para a coleta e comparação de resu
 * [x] incluído calculo aproximado de taxa de bits no client 
 
 ### Etapa 3: Configuração e Execução
-* [ ] Configurar um ambiente de testes com cliente e servidor.
-* [ ] Instalar o **Wireshark** e, se estiver no Linux, as ferramentas `tc/netem`.
-* [ ] Executar os **Cenários 1 e 2** sem alterações de rede e coletar todos os dados e capturas de tráfego.
-* [ ] Executar os **Cenários 3 e 4** com perda de pacotes e latência variável na interface de rede, e coletar os dados e capturas para cada subcenário.
+* [x] Configurar um ambiente de testes com cliente e servidor.
+* [x] Instalar o **Wireshark** e, se estiver no Linux, as ferramentas `tc/netem`.
+* [x] Executar os **Cenários 1 e 2** sem alterações de rede e coletar todos os dados e capturas de tráfego.
+* [x] Executar os **Cenários 3 e 4** com perda de pacotes e latência variável na interface de rede, e coletar os dados e capturas para cada subcenário.
 
 ### Etapa 4: Análise e Relatório
-* [ ] Utilizar o Wireshark para analisar os dados capturados, aplicando filtros para identificar retransmissões, `ACKs` duplicados e segmentos perdidos.
-* [ ] Gerar os gráficos **Time-Sequence Graph** e **I/O Graph** no Wireshark para visualizar o comportamento da janela de congestionamento.
-* [ ] Adicionar as colunas "Delta time displayed" e "TCP Bytes in Flight" no Wireshark para facilitar a análise.
+* [x] Utilizar o Wireshark para analisar os dados capturados, aplicando filtros para identificar retransmissões, `ACKs` duplicados e segmentos perdidos.
+* [x] Gerar os gráficos **Time-Sequence Graph** e **I/O Graph** no Wireshark para visualizar o comportamento da janela de congestionamento.
+* [x] Adicionar as colunas "Delta time displayed" e "TCP Bytes in Flight" no Wireshark para facilitar a análise.
 * [ ] Elaborar um relatório comparando o desempenho nos quatro cenários, incluindo dados, capturas de tela e gráficos.
 * [ ] No relatório, explicar o tipo de perda (fast retransmit ou timeout), a reação do TCP (`cwnd`/`ssthresh` reduction) e o processo de recuperação.
 * [ ] Juntar o relatório, o código-fonte comentado e entregar o trabalho até a data final de **29 de setembro**.

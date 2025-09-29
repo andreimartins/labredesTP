@@ -1,0 +1,21 @@
+[02-56:39]	[INFO]	 IP do servidor: 10.89.0.12
+[02-56:39]	[INFO]	 Servidor iniciado na porta 8890
+[02-56:39]	[INFO]	 Aguardando conexões...
+[02-56:49]	[INFO]	 Conexão aceita de 10.89.0.13:55440
+[02-56:57]	[INFO]	 Conexão aceita de 10.89.0.14:43272
+[02-57:14]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint.AppImage
+[02-57:14]	[INFO]	 Recebendo arquivo...
+[02-57:14]	[INFO]	 storage/CrealityPrint.AppImage
+[02-57:14]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-57:14]	[INFO]	 nome do arquivo: CrealityPrint.AppImage
+[02-57:14]	[INFO]	 Arquivo criado!
+[02-57:22]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint3.AppImage
+[02-57:22]	[INFO]	 Recebendo arquivo...
+[02-57:22]	[INFO]	 storage/CrealityPrint3.AppImage
+[02-57:22]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-57:22]	[INFO]	 nome do arquivo: CrealityPrint3.AppImage
+[02-57:22]	[INFO]	 Arquivo criado!
+[03-00:56]	[INFO]	 Arquivo 'CrealityPrint.AppImage' recebido com sucesso.
+[03-01:09]	[INFO]	 Arquivo 'CrealityPrint3.AppImage' recebido com sucesso.
+[03-01:37]	[INFO]	 Cliente desconectado.
+[03-01:38]	[INFO]	 Cliente desconectado.

@@ -1,0 +1,25 @@
+[02-56:49]	[INFO]	 PID do cliente: 554
+[02-56:49]	[INFO]	 Comandos disponíveis: list, put <nome_arquivo>, quit
+
+[02-56:49]	[INFO]	 Digite um comando: 
+[02-57:14]	[INFO]	 Iniciando comando PUT
+[02-57:14]	[INFO]	 Arquivo aberto com sucesso
+[02-57:14]	[INFO]	 Enviando arquivo: CrealityPrint.AppImage
+[02-57:14]	[INFO]	 OK para enviar
+[02-57:14]	[INFO]	 Lendo arquivo
+[03-00:56]	[INFO]	 Duração da transferência: 222.00 segundos
+[03-00:56]	[INFO]	 Total de pacotes enviados: 162972
+[03-00:56]	[INFO]	 Total de bytes enviados: 237937856
+[03-00:56]	[INFO]	 Transferência de arquivo concluída
+[03-00:56]	[INFO]	 Estatísticas: 
+[03-00:56]	[INFO]	 RTT -> tempo de ida e volta em microssegundos
+[03-00:56]	[INFO]	 cwnd -> janela de congestionamento de envio
+[03-00:56]	[INFO]	 ssthresh -> limiar de slow start
+[03-00:56]	[INFO]	 retrans -> total de retransmissões
+[03-00:56]	[INFO]	 RTT: 18276 us, cwnd: 14, ssthresh: 14, retrans: 8545
+
+[03-00:56]	[INFO]	 Taxa aproximada de transferência: 1071792.14 bytes/segundo
+[03-00:56]	[INFO]	 Conexão PUT durou aproximadamente 222.00 segundos.
+[03-00:56]	[INFO]	 Comandos disponíveis: list, put <nome_arquivo>, quit
+
+[03-00:56]	[INFO]	 Digite um comando: 

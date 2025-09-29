@@ -11,22 +11,20 @@
 
 #include "./tools/log.h" //lib de logs
 
-
 // Definições dos tipos de operação do protocolo
-#define OP_LIST 0   // comando list
-#define OP_PUT 1    // comando put
-#define OP_QUIT 2   // comando quit
-#define OP_DATA 3   // bloco de dados -- uso interno
-#define OP_ERROR 4  // mensagem de erro -- uso interno
-#define OP_OK 5     // mensagem ok -- uso interno
+#define OP_LIST 0  // comando list
+#define OP_PUT 1   // comando put
+#define OP_QUIT 2  // comando quit
+#define OP_DATA 3  // bloco de dados -- uso interno
+#define OP_ERROR 4 // mensagem de erro -- uso interno
+#define OP_OK 5    // mensagem ok -- uso interno
 
 #define STORAGE_DIR "storage/" // Diretório para armazenar arquivos recebidos
 
-#define BUFFER_SIZE 1460  // Tamanho típico do MTU TCP
+#define BUFFER_SIZE 1460      // Tamanho típico do MTU TCP
 #define LOG_FILE "server.log" // nome do arquivo de log
 
 char log_line[LOG_BUFFER_SIZE] = {0};
-
 
 // Estrutura do cabeçalho para o protocolo da aplicação
 #pragma pack(1)
@@ -41,6 +39,7 @@ void *handle_client(void *socket_desc);
 void send_file_list(int sock);
 void receive_file(int sock, char *filename);
 void exit_error(char *buff);
+ssize_t read_all(int sock_fd, void *buf, size_t len);
 
 int main(int argc, char *argv[])
 {
@@ -50,30 +49,26 @@ int main(int argc, char *argv[])
     int server_fd, client_sock, c_len;
     struct sockaddr_in server, client;
 
-
     if (argc < 2)
     {
         fprintf(stderr, "Uso: %s <porta>\n", argv[0]);
         return 1;
     }
 
-
     // Cria o diretório de armazenamento se não existir
     mkdir(STORAGE_DIR, 0764); // 0764 = permissões rwx rw- r--
 
-
     // Log do endereço IP do servidor
     FILE *f = popen("hostname -I", "r"); // comando para obter o endereço IP
-    if (f && fgets(server_ip_true, sizeof(server_ip_true), f)) {
+    if (f && fgets(server_ip_true, sizeof(server_ip_true), f))
+    {
         char *nl = strchr(server_ip_true, ' ');
-        if (nl) *nl = '\0';
+        if (nl)
+            *nl = '\0';
         pclose(f);
     }
     sprintf(log_line, "IP do servidor: %s", server_ip_true);
     write_log(log_line, LOG_INFO, LOG_FILE);
-
-
-
 
     // Inicializa o socket
     // Cria socket TCP/IPv4
@@ -84,11 +79,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY; // qualquer interface
     server.sin_port = htons(atoi(argv[1]));
-
 
     // Faz o bind
     if (bind(server_fd, (struct sockaddr *)&server, sizeof(server)) < 0)
@@ -97,7 +90,6 @@ int main(int argc, char *argv[])
         exit_error("Falha no bind");
     }
 
-
     // Escuta
     listen(server_fd, 5); // Fila de até 5 conexões pendentes
 
@@ -105,18 +97,8 @@ int main(int argc, char *argv[])
     write_log(log_line, LOG_INFO, LOG_FILE);
     write_log("Aguardando conexões...", LOG_INFO, LOG_FILE);
 
-    // // Show local IP -- 0.0.0.0 to any interface
-    // char server_ip [INET_ADDRSTRLEN];
-    // struct sockaddr_in sa;
-    // socklen_t sa_len = sizeof(sa);
-    // getsockname(server_fd, (struct sockaddr *)&sa, &sa_len);
-    // inet_ntop(AF_INET, &sa.sin_addr, server_ip, sizeof(server_ip));
-    // sprintf(log_line, "Server IP: %s", server_ip);
-    // write_log(log_line, LOG_INFO, LOG_FILE);
-
 
     c_len = sizeof(struct sockaddr_in);
-
 
     while ((client_sock = accept(server_fd, (struct sockaddr *)&client, (socklen_t *)&c_len)))
     {
@@ -143,7 +125,6 @@ int main(int argc, char *argv[])
         // Thread principal continua aguardando novas conexões
     }
 
-
     if (client_sock < 0)
     {
         write_log("Falha no accept", LOG_ERROR, LOG_FILE);
@@ -161,9 +142,9 @@ void *handle_client(void *socket_desc)
     int sock = *(int *)socket_desc;
     free(socket_desc);
     Header header;
-    char buffer[1024];
+    char buffer[BUFFER_SIZE];
 
-    while (read(sock, &header, sizeof(Header)) > 0) //laço para recebimento de comandos
+    while (read(sock, &header, sizeof(Header)) > 0) // laço para recebimento de comandos
     {
         header.payload_size = ntohl(header.payload_size);
 
@@ -202,7 +183,7 @@ void *handle_client(void *socket_desc)
     return 0;
 }
 
-//execução do comando de list 
+// execução do comando de list
 void send_file_list(int sock)
 {
     DIR *d;
@@ -212,14 +193,15 @@ void send_file_list(int sock)
     d = opendir(STORAGE_DIR); // abre o diretório storage
     if (d)
     {
-        while ((dir = readdir(d)) != NULL) // lê lista de arquivos 
+        while ((dir = readdir(d)) != NULL) // lê lista de arquivos
         {
             // Apenas arquivos regulares
-            
-            if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) { //ingora . e ..
+
+            if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0)
+            { // ingora . e ..
                 continue;
             }
-            strcat(file_list, dir->d_name); //montagem da lista de nomes de arquivos
+            strcat(file_list, dir->d_name); // montagem da lista de nomes de arquivos
             strcat(file_list, "\n");
         }
         closedir(d); // fecha o diretório
@@ -229,13 +211,11 @@ void send_file_list(int sock)
     response_header.type = OP_LIST;
     response_header.payload_size = htonl(strlen(file_list));
 
-    //TODO: corrigir para respeitar o MTU
-    write(sock, &response_header, sizeof(Header)); // envia header informando que ira enviar a lista 
-    write(sock, file_list, strlen(file_list)); // envia a lista 
+    write(sock, &response_header, sizeof(Header)); // envia header informando que ira enviar a lista
+    write(sock, file_list, strlen(file_list));     // envia a lista
 }
 
-
-//recebimento de arquivo enviado pelo client
+// recebimento de arquivo enviado pelo client
 void receive_file(int sock, char *filename)
 {
     char filepath[512];
@@ -261,7 +241,7 @@ void receive_file(int sock, char *filename)
     sprintf(log_line, "nome do arquivo: %s", filename);
     write_log(log_line, LOG_INFO, LOG_FILE);
 
-    //cria arquivo a ser recebido
+    // cria arquivo a ser recebido
     FILE *fp = fopen(filepath, "wb");
     if (fp == NULL)
     {
@@ -276,26 +256,63 @@ void receive_file(int sock, char *filename)
     ok_header.payload_size = 0;
     write(sock, &ok_header, sizeof(Header)); // envia apenas ok sem mensagem descritiva - controle interno
 
-    //  fluco de recebimento
+    //  fluxo de recebimento
     Header data_header;
     char data_buffer[BUFFER_SIZE];
+    memset(data_buffer, 0, sizeof(data_buffer));
     ssize_t bytes_read;
     int total_blocks = 0;
     // Loop para receber dados do arquivo
-    while ((bytes_read = read(sock, &data_header, sizeof(Header))) > 0) // recebe o header da msg
+
+    while (1)
     {
-        if (data_header.type != OP_DATA) //qualquer mensagem diferente de OP_DATA encerra o recebimento
+        // Leitura segura do cabeçalho
+        if (read_all(sock, &data_header, sizeof(Header)) <= 0)
         {
-            break; // Fim da transmissão do arquivo
+            break;
         }
-        data_header.payload_size = ntohl(data_header.payload_size); 
-        read(sock, data_buffer, data_header.payload_size);      // recebe o dado
-        fwrite(data_buffer, 1, data_header.payload_size, fp);   // escreve no arquivo parte do dado recebido
+
+        if (data_header.type != OP_DATA)
+        {
+            break;
+        }
+
+        data_header.payload_size = ntohl(data_header.payload_size);
+
+        if (data_header.payload_size > BUFFER_SIZE)
+        {
+            // Prevenção extra contra payloads maliciosos ou corrompidos
+            break;
+        }
+
+        // Leitura segura do payload
+        if (read_all(sock, data_buffer, data_header.payload_size) <= 0)
+        {
+            break;
+        }
+
+        fwrite(data_buffer, 1, data_header.payload_size, fp);
     }
 
     sprintf(log_line, "Arquivo '%s' recebido com sucesso.", filename);
     write_log(log_line, LOG_INFO, LOG_FILE);
     fclose(fp);
+}
+
+// garante recebimento completo de um buffer
+ssize_t read_all(int sock_fd, void *buf, size_t len)
+{
+    size_t total_read = 0;
+    while (total_read < len)
+    {
+        ssize_t bytes_read = read(sock_fd, (char *)buf + total_read, len - total_read);
+        if (bytes_read <= 0)
+        {
+            return bytes_read; // Erro ou conexão fechada
+        }
+        total_read += bytes_read;
+    }
+    return total_read;
 }
 
 void exit_error(char *buff)

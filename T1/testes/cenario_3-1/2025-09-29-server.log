@@ -1,0 +1,11 @@
+[02-42:50]	[INFO]	 IP do servidor: 10.89.0.12
+[02-42:50]	[INFO]	 Servidor iniciado na porta 8890
+[02-42:50]	[INFO]	 Aguardando conexões...
+[02-42:54]	[INFO]	 Conexão aceita de 10.89.0.13:53844
+[02-43:08]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint.AppImage
+[02-43:08]	[INFO]	 Recebendo arquivo...
+[02-43:08]	[INFO]	 storage/CrealityPrint.AppImage
+[02-43:08]	[INFO]	 Arquivo não existe, pronto para receber.
+[02-43:08]	[INFO]	 nome do arquivo: CrealityPrint.AppImage
+[02-43:08]	[INFO]	 Arquivo criado!
+[02-46:46]	[INFO]	 Arquivo 'CrealityPrint.AppImage' recebido com sucesso.

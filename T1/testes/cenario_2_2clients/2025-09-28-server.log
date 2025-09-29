@@ -1,0 +1,33 @@
+[23-11:21]	[INFO]	 IP do servidor: 10.89.0.9
+[23-11:21]	[INFO]	 Servidor iniciado na porta 8899
+[23-11:21]	[INFO]	 Aguardando conexões...
+[23-11:32]	[INFO]	 Conexão aceita de 10.89.0.10:59794
+[23-11:43]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint.AppImage
+[23-11:43]	[INFO]	 Recebendo arquivo...
+[23-11:43]	[INFO]	 storage/CrealityPrint.AppImage
+[23-11:43]	[INFO]	 Arquivo não existe, pronto para receber.
+[23-11:43]	[INFO]	 nome do arquivo: CrealityPrint.AppImage
+[23-11:43]	[INFO]	 Arquivo criado!
+[23-11:49]	[INFO]	 Arquivo 'CrealityPrint.AppImage' recebido com sucesso.
+[23-52:58]	[INFO]	 Cliente solicitou lista de arquivos.
+[23-55:26]	[INFO]	 IP do servidor: 10.89.0.9
+[23-55:26]	[INFO]	 Falha no bind
+[23-55:30]	[INFO]	 IP do servidor: 10.89.0.9
+[23-55:30]	[INFO]	 Servidor iniciado na porta 8898
+[23-55:30]	[INFO]	 Aguardando conexões...
+[23-55:36]	[INFO]	 Conexão aceita de 10.89.0.10:58546
+[23-55:47]	[INFO]	 Conexão aceita de 10.89.0.11:50362
+[23-56:28]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint3.AppImage
+[23-56:28]	[INFO]	 Recebendo arquivo...
+[23-56:28]	[INFO]	 storage/CrealityPrint3.AppImage
+[23-56:28]	[INFO]	 Arquivo não existe, pronto para receber.
+[23-56:28]	[INFO]	 nome do arquivo: CrealityPrint3.AppImage
+[23-56:28]	[INFO]	 Arquivo criado!
+[23-56:29]	[INFO]	 Cliente quer enviar arquivo: CrealityPrint.AppImage
+[23-56:29]	[INFO]	 Recebendo arquivo...
+[23-56:29]	[INFO]	 storage/CrealityPrint.AppImage
+[23-56:29]	[INFO]	 Arquivo não existe, pronto para receber.
+[23-56:29]	[INFO]	 nome do arquivo: CrealityPrint.AppImage
+[23-56:29]	[INFO]	 Arquivo criado!
+[23-56:35]	[INFO]	 Arquivo 'CrealityPrint3.AppImage' recebido com sucesso.
+[23-56:36]	[INFO]	 Arquivo 'CrealityPrint.AppImage' recebido com sucesso.

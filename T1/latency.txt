@@ -1,0 +1,24 @@
+# substitua IFACE pela interface (ex.: eth0)
+
+limite de banda
+
+tc qdisc add dev eth0 root handle 1: htb default 10
+tc class add dev eth0 parent 1: classid 1:10 htb rate 10mbit ceil 10mbit
+
+perda de pacotes
+tc qdisc add dev eth0 parent 1:10 handle 10: netem loss 5%
+
+perda de pacotes latencia variavel
+tc qdisc add dev eth0 parent 1:10 handle 10: netem delay 40ms 60ms loss 5%
+
+tc qdisc add dev eth0 parent 1:10 handle 10: netem delay 40ms 60ms loss 0.1%
+
+tc qdisc add dev eth0 parent 1:10 handle 10: netem delay 50ms loss 0.1%
+
+# Remover:
+# sudo tc qdisc del dev eth0 root
+
+
+exibir: 
+tc qdisc show dev eth0
+

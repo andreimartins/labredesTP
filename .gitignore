@@ -1,2 +1,6 @@
 
 .vscode/
+*.pcapng
+/storage
+T1/src/storage/CrealityPrint.AppImage
+T1/src/storage/CrealityPrint3.AppImage

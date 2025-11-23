@@ -175,7 +175,6 @@ void draw_interface() {
            total_packets_received, total_bytes_received);
     printf("Filtros: [%s*] e [%s*]\n\n", TUNNEL_PREFIX_V4, TUNNEL_PREFIX_V6);
            
-    // Novo Layout com 11 colunas de dados
             
     printf("--------------------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("| %-30s | %-12s | %-12s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s |\n", 

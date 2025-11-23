@@ -1,0 +1,35 @@
+
+containers:
+server
+ podman run -v `pwd`:/home --privileged --network lab -p 8080:8080 labredes
+http://localhost:8080
+
+client1
+podman run -v `pwd`:/home --privileged --network lab -p 8081:8080 labredes
+
+http://localhost:8081
+
+
+
+client2
+podman run -v `pwd`:/home --privileged --network lab -p 8082:8080 labredes
+
+http://localhost:8082
+
+server start
+./traffic_tunnel eth0 -s
+
+monitor
+./traffic_monitor tun0
+
+
+client1 start
+
+./traffic_tunnel eth0 -c client1.sh 
+
+client2 start
+
+./traffic_tunnel eth0 -c client2.sh 
+
+
+

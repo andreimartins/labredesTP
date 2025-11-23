@@ -7,10 +7,7 @@
 #include <stdbool.h> // Para bool
 
 // --- CONFIGURAÇÃO DE PREFIXOS ---
-// Prefixo IPv4 da rede do túnel 
 #define TUNNEL_PREFIX_V4 "172.31.66."
-
-// Prefixo IPv6 
 #define TUNNEL_PREFIX_V6 "fe80:" 
 
 // Variáveis globais
@@ -35,10 +32,21 @@ ClientStats* get_or_create_client(const char *ip) {
         exit(1);
     }
     
-    // INET6_ADDRSTRLEN garante espaço suficiente para IPv4 e IPv6
+    // Inicializa campos e contadores
     strncpy(new_client->client_ip, ip, INET6_ADDRSTRLEN - 1);
     new_client->total_packets = 0;
     new_client->total_bytes = 0;
+    
+    // Inicialização dos Contadores de Protocolo
+    new_client->tcp_count = 0;
+    new_client->udp_count = 0;
+    new_client->icmp_count = 0;
+    new_client->http_count = 0;
+    new_client->dhcp_count = 0;
+    new_client->dns_count = 0;
+    new_client->ntp_count = 0;
+    new_client->other_count = 0;
+
     new_client->remote_head = NULL;
     new_client->next = client_list_head;
     client_list_head = new_client;
@@ -83,29 +91,65 @@ void init_stats() {
     fflush(stdout);
 }
 
+/**
+ * Atualiza os contadores, incluindo os contadores de protocolos solicitados.
+ */
 void update_stats(const PacketInfo *info) {
     if (info == NULL) return;
     
     total_packets_received++;
     total_bytes_received += info->total_len;
     
-    // --- FILTRO DUAL STACK (IPv4 e IPv6) ---
+    // --- FILTRO DUAL STACK ---
     bool is_tun_v4 = (strncmp(info->ip_src, TUNNEL_PREFIX_V4, strlen(TUNNEL_PREFIX_V4)) == 0);
     bool is_tun_v6 = (strncmp(info->ip_src, TUNNEL_PREFIX_V6, strlen(TUNNEL_PREFIX_V6)) == 0);
 
-    // Se NÃO for IPv4 do túnel E NÃO for IPv6 do túnel, ignora.
     if (!is_tun_v4 && !is_tun_v6) {
         return; 
     }
 
-    // 1. Atualiza dados do Cliente
     ClientStats *client = get_or_create_client(info->ip_src);
     if (client) {
         client->total_packets++;
         client->total_bytes += info->total_len;
 
-        // 2. Atualiza dados do Destino Remoto
-        // Aceita TCP, UDP e também ICMPv6 (que é importante para vizinhança IPv6)
+        // 1. Contadores de Camada de Transporte/Rede
+        if (strcmp(info->trans_protocol, "TCP") == 0) {
+            client->tcp_count++;
+        }
+        if (strcmp(info->trans_protocol, "UDP") == 0) {
+            client->udp_count++;
+        }
+        if (strcmp(info->net_protocol, "ICMP") == 0 || strcmp(info->net_protocol, "ICMPv6") == 0) {
+            client->icmp_count++;
+        }
+        
+        // 2. Contadores de Camada de Aplicação (solicitados)
+        if (strcmp(info->app_protocol, "HTTP") == 0) {
+            client->http_count++;
+        } else if (strcmp(info->app_protocol, "DHCP") == 0) {
+            client->dhcp_count++;
+        } else if (strcmp(info->app_protocol, "DNS") == 0) {
+            client->dns_count++;
+        } else if (strcmp(info->app_protocol, "NTP") == 0) {
+            client->ntp_count++;
+        }
+        
+        // 3. Outros (Catch-all para non-IP, ou IP com L4 não mapeado)
+        // Se for "outro" na camada de rede (geralmente ARP/L2), conta.
+        if (strcmp(info->net_protocol, "outro") == 0) {
+            client->other_count++;
+        } else if (strcmp(info->net_protocol, "IPv4") == 0 || strcmp(info->net_protocol, "IPv6") == 0) {
+             // Se for IP, mas não foi classificado como TCP, UDP, ou ICMP/ICMPv6, é "outro" L4/L7.
+            if (strcmp(info->trans_protocol, "TCP") != 0 &&
+                strcmp(info->trans_protocol, "UDP") != 0 &&
+                (strcmp(info->net_protocol, "ICMP") != 0 && strcmp(info->net_protocol, "ICMPv6") != 0)) 
+            {
+                client->other_count++;
+            }
+        }
+
+        // 4. Atualiza dados do Destino Remoto (manutenção do requisito de volume de tráfego)
         if (strcmp(info->trans_protocol, "TCP") == 0 || 
             strcmp(info->trans_protocol, "UDP") == 0 ||
             strcmp(info->trans_protocol, "SCTP") == 0) 
@@ -119,8 +163,11 @@ void update_stats(const PacketInfo *info) {
     }
 }
 
+/**
+ * Desenha a interface modo texto, com todas as colunas de protocolo solicitadas.
+ */
 void draw_interface() {
-    // ANSI: Limpar tela e mover cursor para o topo
+    // Limpar tela e mover cursor para o topo
     printf("\033[2J\033[H"); 
     
     printf("\033[1;32m=== Monitor de Tráfego Dual Stack (IPv4/IPv6) ===\033[0m\n");
@@ -128,47 +175,35 @@ void draw_interface() {
            total_packets_received, total_bytes_received);
     printf("Filtros: [%s*] e [%s*]\n\n", TUNNEL_PREFIX_V4, TUNNEL_PREFIX_V6);
            
-    // Layout Alargado para IPv6 (Coluna Cliente aumentada para 39 chars)
-    printf("------------------------------------------------------------------------------------------\n");
-    printf("| %-39s | %-25s | %-6s | %-12s |\n", 
-           "CLIENTE (TUNEL)", "DESTINO REMOTO", "PROTO", "PKTS/BYTES");
-    printf("------------------------------------------------------------------------------------------\n");
+    // Novo Layout com 11 colunas de dados
+            
+    printf("--------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("| %-30s | %-12s | %-12s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s | %-8s |\n", 
+           "CLIENTE (TUNEL)", "TOTAL PKTS", "TOTAL BYTES", "TCP", "UDP", "ICMP", "HTTP", "DHCP", "DNS", "NTP", "OUTROS");
+    printf("--------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
     ClientStats *client = client_list_head;
     
     if (client == NULL) {
-        printf("| Aguardando dados de clientes...                                                        |\n");
+        printf("| Aguardando dados de clientes...                                                                                                                                                        |\n");
     }
 
     while (client != NULL) {
-        // Linha principal do cliente
-        printf("| \033[1;36m%-39s\033[0m | TOTAL GERAL               | %-6s | %-12lu |\n", 
-               client->client_ip, "---", client->total_bytes);
+        // Linha principal do cliente exibindo os contadores de protocolo
+        printf("| \033[1;36m%-30s\033[0m | \033[1m%-12lu\033[0m | %-12lu | %-8lu | %-8lu | %-8lu | %-8lu | %-8lu | %-8lu | %-8lu | %-8lu |\n", 
+               client->client_ip, 
+               client->total_packets, 
+               client->total_bytes,
+               client->tcp_count,
+               client->udp_count,
+               client->icmp_count,
+               client->http_count,
+               client->dhcp_count,
+               client->dns_count,
+               client->ntp_count,
+               client->other_count);
 
-        // Lista de destinos
-        RemoteStats *remote = client->remote_head;
-        int remote_count = 0;
-
-        while(remote != NULL) {
-            if (remote_count < 5) {
-                // Formatação ajustada para caber na tela
-                char remote_dest_str[30];
-                snprintf(remote_dest_str, 30, "%s:%d", remote->remote_ip, remote->remote_port);
-                
-                printf("| %-39s | %-25s | %-6s | %lu/%lu |\n",
-                    " ", remote_dest_str, remote->protocol,
-                    remote->packet_count, remote->byte_count);
-            }
-            remote = remote->next;
-            remote_count++;
-        }
-
-        if (remote_count > 5) {
-            printf("| %-39s | ... e mais %d conexões ...                           |\n", 
-                   " ", remote_count - 5);
-        }
-
-        printf("------------------------------------------------------------------------------------------\n");
+        printf("--------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         client = client->next;
     }
     
@@ -192,4 +227,3 @@ void cleanup_stats() {
     }
     printf("\nMemória liberada.\n");
 }
-

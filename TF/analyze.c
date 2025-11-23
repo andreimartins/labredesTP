@@ -164,18 +164,30 @@ void analyze_transport_layer(unsigned char *buffer, int size, PacketInfo *info) 
  * Analisa a Camada de Aplicação (baseado em portas conhecidas)
  */
 void analyze_application_layer(unsigned char *buffer, int size, PacketInfo *info) {
-    int port = info->port_src == 0 ? info->port_dst : info->port_src;
+    int port_src = info->port_src;
+    int port_dst = info->port_dst;
+    int port_to_check = 0;
+
+    // Lógica para determinar a porta de serviço (geralmente a menor e != 0)
+    if (port_src != 0 && port_src <= 1024) {
+        port_to_check = port_src;
+    } else if (port_dst != 0 && port_dst <= 1024) {
+        port_to_check = port_dst;
+    } else {
+        // Se ambas forem altas (efêmeras), o tráfego pode ser classificado como "outro"
+        port_to_check = port_dst;
+    }
     
     // Se for TCP/UDP, verifica as portas conhecidas
     if (strcmp(info->trans_protocol, "TCP") == 0 || strcmp(info->trans_protocol, "UDP") == 0) {
-        switch (port) {
+        switch (port_to_check) {
             case 80:
             case 443:
                 strncpy(info->app_protocol, "HTTP", 9);
                 strncpy(info->app_info, "Web Traffic", 255);
                 break;
-            case 67:
-            case 68:
+            case 67: // DHCP Server (Destino)
+            case 68: // DHCP Client (Origem)
                 strncpy(info->app_protocol, "DHCP", 9);
                 strncpy(info->app_info, "Dynamic Host Configuration", 255);
                 break;
@@ -189,10 +201,12 @@ void analyze_application_layer(unsigned char *buffer, int size, PacketInfo *info
                 break;
             default:
                 strncpy(info->app_protocol, "outro", 9);
+                snprintf(info->app_info, 255, "Porta nao mapeada (%d)", port_to_check);
                 break;
         }
     } else {
          // Para ICMP ou outros protocolos de rede/transporte sem porta
          strncpy(info->app_protocol, "N/A", 9);
+         strncpy(info->app_info, "N/A", 255);
     }
 }

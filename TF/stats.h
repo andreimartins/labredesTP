@@ -8,7 +8,7 @@
 
 // --- Estruturas de Dados ---
 
-// Estatísticas por Destino Remoto (máquina remota: porta: protocolo)
+// Estatísticas por Destino Remoto (mantida para logs/requisitos de volume)
 typedef struct RemoteStats_s {
     char remote_ip[INET6_ADDRSTRLEN];
     int remote_port;
@@ -20,12 +20,28 @@ typedef struct RemoteStats_s {
     struct RemoteStats_s *next; // Lista ligada
 } RemoteStats;
 
-// Estatísticas por Cliente (o IP na rede túnel: 172.31.66.xxx)
+// Estatísticas por Cliente (o IP na rede túnel)
 typedef struct ClientStats_s {
     char client_ip[INET6_ADDRSTRLEN];
     
     unsigned long total_packets;
     unsigned long total_bytes;
+
+    // --- Contadores de Protocolo (para exibição) ---
+    // Camada de Transporte/Rede
+    unsigned long tcp_count;
+    unsigned long udp_count;
+    unsigned long icmp_count;
+    
+    // Camada de Aplicação (Protocolos solicitados)
+    unsigned long http_count;
+    unsigned long dhcp_count;
+    unsigned long dns_count;
+    unsigned long ntp_count;
+    
+    // Outros (L3/L4 não classificados ou L2)
+    unsigned long other_count;
+    // ------------------------------------------------
 
     // Lista de máquinas remotas acessadas por este cliente
     RemoteStats *remote_head; 
@@ -38,7 +54,7 @@ typedef struct ClientStats_s {
 
 void init_stats();
 void update_stats(const PacketInfo *info);
-void draw_interface();
+void draw_interface(); 
 void cleanup_stats();
 
 // Variáveis globais para contadores

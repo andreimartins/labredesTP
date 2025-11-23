@@ -31,14 +31,14 @@ int setup_raw_socket(const char* ifname) {
     //     perror("Erro ao criar Raw Socket. Execute com sudo!");
     //     return -1;
     // }
-    // // 1. Vinculando a interface específica passada por parâmetro (CORRETO)
+    // // 1. Vinculando a interface específica passada por parâmetro
     if(setsockopt(sock_fd, SOL_SOCKET, SO_BINDTODEVICE, ifname, (socklen_t)strlen(ifname)) < 0) {
         printf("SO_BINDTODEVICE(%s) falhou: %s", ifname, strerror(errno));
         close(sock_fd);
         exit(EXIT_FAILURE);
     }
     
-    // 2. Definindo o modo Promíscuo na interface (OPCIONAL, MAS RECOMENDADO)
+    // 2. Definindo o modo Promíscuo na interface
     struct ifreq ifr;
     strncpy(ifr.ifr_name, ifname, IFNAMSIZ-1);
     

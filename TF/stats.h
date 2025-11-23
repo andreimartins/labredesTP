@@ -38,7 +38,7 @@ typedef struct ClientStats_s {
 
 void init_stats();
 void update_stats(const PacketInfo *info);
-void draw_interface(); // sock_fd removido para simplificar
+void draw_interface();
 void cleanup_stats();
 
 // Variáveis globais para contadores

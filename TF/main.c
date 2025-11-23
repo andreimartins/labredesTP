@@ -70,6 +70,7 @@ int main(int argc, char *argv[]) {
             packet_count_since_draw++;
 
         }
+        //para evitar sobrecarga de recursos, escreve a cada 20 pacotes
         if (packet_count_since_draw >= 20) {
             draw_interface();
             packet_count_since_draw = 0;
@@ -77,6 +78,6 @@ int main(int argc, char *argv[]) {
     }
     
     cleanup();
-    
+    cleanup_stats();
     return 0;
 }
